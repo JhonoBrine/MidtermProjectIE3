@@ -12,7 +12,7 @@ file = os.path.join(base_dir, "MProject/views/mainpage.py")
 
 profile_1_page= st.Page(
     
-    page="MProject/views/mainpage.py",
+    page="MProject/views/mainPage.py",
     title="Introduction",
     icon=":material/home:",
     default=True,
