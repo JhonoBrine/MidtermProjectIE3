@@ -1,7 +1,7 @@
 import streamlit as st
 import os
 
-file = "D:\\$FILES\\SCHOOL_FILES\\#Fourth_Year\\First_Semester\\CSIT342_Industry_Elective_3\\MidtermProject\\MidtermProjectIE3\\main.py"
+file = "D:/$FILES/SCHOOL_FILES/#Fourth_Year/First_Semester/CSIT342_Industry_Elective_3/MidtermProject/MidtermProjectIE3/main.py"
 thisfile = os.path.abspath(file)
 if ('/' in thisfile): os.chdir(os.path.dirname(thisfile))
 
