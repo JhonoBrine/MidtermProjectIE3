@@ -3,6 +3,7 @@ import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
 import plotly.figure_factory as ff
+import plotly.express as px
 
 # Title of the Streamlit app
 st.title('Interactive Student Performance Dashboard')
@@ -11,17 +12,13 @@ st.write("📊 This dataset comprises various attributes related to student perf
 # Load the dataset
 df_sample = pd.read_csv("MProject/assets/csv/Student_Grades.csv")
 
-# Display raw data
-st.write("Raw Data:")
-st.write(df_sample)
-
 # --- User Controls for Interactive Filtering ---
 # Select columns for visualization (numeric columns only)
 numeric_columns = df_sample.select_dtypes(include=[float, int]).columns.tolist()
-selected_columns = st.multiselect("Select columns to visualize", numeric_columns, default=numeric_columns)
+selected_columns = st.sidebar.multiselect("Select columns to visualize", numeric_columns, default=numeric_columns)
 
-# Slider for adjusting data range (e.g., filter by hours of study)
-min_value, max_value = st.slider(
+# Slider for adjusting data range (e.g., filter by Midterm Exam Scores)
+min_value, max_value = st.sidebar.slider(
     'Filter by Midterm Exam Scores (Range)',
     float(df_sample['MidTerm'].min()), 
     float(df_sample['MidTerm'].max()), 
@@ -31,56 +28,54 @@ min_value, max_value = st.slider(
 # Filter data based on the slider range
 df_filtered = df_sample[(df_sample['MidTerm'] >= min_value) & (df_sample['MidTerm'] <= max_value)]
 
-st.write(f"Filtered Data (Midterm Scores between {min_value} and {max_value}):")
-st.write(df_filtered)
-
-# --- Data Visualization ---
 # Clean data for visualization: Drop NA and non-numeric columns
 df_cleaned = df_filtered.dropna()
-df_cleaned = df_cleaned[selected_columns]
 
-# Show summary statistics of the filtered data
-st.write("Summary Statistics of Filtered Data:")
-st.write(df_cleaned.describe().T)
-
-# --- Plot Histograms ---
-sns.set(style="whitegrid")
-
-st.write("Histograms of Selected Columns:")
-
-# Check if there is data to plot
-if not df_cleaned.empty:
-    # Clear the plot before creating a new one
-    plt.clf()
-
-    # Create the histograms
-    df_cleaned.hist(bins=10, edgecolor='black', layout=(2, 3), figsize=(12, 10))
-
-    # Add title and adjust layout
-    plt.suptitle('Histograms (Filtered Data)', fontsize=16)
-    plt.tight_layout(rect=[0, 0.03, 1, 0.95])
-
-    # Display the plot in Streamlit
-    st.pyplot(plt)
+# --- Check for Empty Data ---
+if df_cleaned.empty:
+    st.warning("No data available after filtering. Please adjust your filters.")
 else:
-    st.write("No data available for the selected filters.")
+    # Ensure selected columns have enough data
+    valid_columns = [col for col in selected_columns if len(df_cleaned[col].dropna().unique()) > 1]
 
-# --- Heatmap for Correlation Matrix ---
-st.write("Correlation Matrix Heatmap:")
+    if not valid_columns:
+        st.warning("Please select columns with sufficient data to visualize.")
+    else:
+        # --- Function for Plotting Histograms ---
+        def plot_histograms(data, columns):
+            st.write("Histograms of Selected Columns (Using Plotly):")
+            hist_data = [data[col].values for col in columns]
+            group_labels = columns
+            fig = ff.create_distplot(hist_data, group_labels, bin_size=[0.5] * len(columns))
+            st.plotly_chart(fig, use_container_width=True)
 
-# Check if there are enough numeric columns to compute the correlation
-if len(df_cleaned.columns) > 1:
-    # Clear the figure before plotting
-    plt.clf()
-    
-    # Compute correlation matrix
-    corr = df_cleaned.corr()
-    
-    # Set up the figure size and draw the heatmap
-    plt.figure(figsize=(14, 10))
-    sns.heatmap(corr, annot=True, cmap='coolwarm', cbar=True)
+        # --- Function for Plotting Heatmap ---
+        def plot_heatmap(data, columns):
+            st.write("Correlation Matrix Heatmap:")
+            if len(data[columns].columns) > 1:
+                corr = data[columns].corr()
+                fig_heatmap = px.imshow(corr,
+                                        color_continuous_scale='Viridis',
+                                        aspect='auto',
+                                        title='Correlation Matrix Heatmap')
+                st.plotly_chart(fig_heatmap, use_container_width=True)
+            else:
+                st.write("Not enough data to generate a correlation heatmap.")
 
-    # Display the heatmap in Streamlit
-    st.pyplot(plt)
-else:
-    st.write("Not enough data to generate a correlation heatmap.")
+        # --- Function for Plotting Box Plots Side by Side ---
+        def plot_interactive_box_plots(data, columns):
+            st.write("Interactive Box Plots of Selected Columns:")
+            
+            # Create two columns for side-by-side box plots
+            for i in range(0, len(columns), 2):
+                cols = st.columns(2)  # Create two columns
+                
+                for j, col in enumerate(columns[i:i+2]):  # Process two columns at a time
+                    with cols[j]:  # Place each plot in a separate column
+                        fig = px.box(data, y=col, title=f'Box Plot of {col}', points='all')
+                        st.plotly_chart(fig, use_container_width=True)
+
+        # Call the plotting functions
+        plot_histograms(df_cleaned, valid_columns)
+        plot_heatmap(df_cleaned, valid_columns)
+        plot_interactive_box_plots(df_cleaned, valid_columns)

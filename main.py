@@ -10,16 +10,30 @@ if ('/' in thisfile): os.chdir(os.path.dirname(thisfile))
 profile_1_page= st.Page(
     
     page="MProject/views/mainpage.py",
-    title="First Page",
-    icon=":material/account_circle:",
+    title="Introduction",
+    icon=":material/home:",
     default=True,
 )
 
 profile_2_page= st.Page(
     
     page="MProject/views/dataPage.py",
-    title="Data Page",
-    icon=":material/account_circle:",
+    title="Existing Dataset",
+    icon=":material/analytics:",
+)
+
+profile_3_page= st.Page(
+    
+    page="MProject/views/rawDataPage.py",
+    title="Insert Raw Data",
+    icon=":material/note_add:",
+)
+
+profile_4_page= st.Page(
+    
+    page="MProject/views/membersPage.py",
+    title="Members",
+    icon=":material/group:",
 )
 
 
@@ -27,7 +41,9 @@ profile_2_page= st.Page(
 
 pg = st.navigation(
     {
-        "Info": [profile_1_page, profile_2_page],
+        "Home": [profile_1_page],
+        "Data Visualization": [profile_2_page, profile_3_page],
+        "BaoBao": [profile_4_page],
     }    
 )
 
