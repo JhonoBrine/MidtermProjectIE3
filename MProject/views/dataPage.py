@@ -6,7 +6,7 @@ import plotly.figure_factory as ff
 import plotly.express as px
 
 # Title of the Streamlit app
-st.title('Interactive Student Performance Dashboard')
+st.title('Student Performance Dashboard')
 st.write("📊 This dataset comprises various attributes related to student performance, including hours of study, practice, teamwork involvement, midterm exam scores, final exam scores, overall scores, and corresponding grades.")
 
 # Load the dataset
@@ -43,28 +43,26 @@ else:
     else:
         # --- Function for Plotting Histograms ---
         def plot_histograms(data, columns):
-            st.write("Histograms of Selected Columns (Using Plotly):")
             hist_data = [data[col].values for col in columns]
             group_labels = columns
             fig = ff.create_distplot(hist_data, group_labels, bin_size=[0.5] * len(columns))
+            fig.update_layout(title="Histogram") 
             st.plotly_chart(fig, use_container_width=True)
 
         # --- Function for Plotting Heatmap ---
         def plot_heatmap(data, columns):
-            st.write("Correlation Matrix Heatmap:")
             if len(data[columns].columns) > 1:
                 corr = data[columns].corr()
                 fig_heatmap = px.imshow(corr,
                                         color_continuous_scale='Viridis',
                                         aspect='auto',
-                                        title='Correlation Matrix Heatmap')
+                                        title='Heatmap')
                 st.plotly_chart(fig_heatmap, use_container_width=True)
             else:
                 st.write("Not enough data to generate a correlation heatmap.")
 
         # --- Function for Plotting Box Plots Side by Side ---
         def plot_interactive_box_plots(data, columns):
-            st.write("Interactive Box Plots of Selected Columns:")
             
             # Create two columns for side-by-side box plots
             for i in range(0, len(columns), 2):

@@ -18,7 +18,7 @@ profile_1_page= st.Page(
 profile_2_page= st.Page(
     
     page="MProject/views/dataPage.py",
-    title="Existing Dataset Dashboard",
+    title="Student Performance Dashboard",
     icon=":material/analytics:",
 )
 
