@@ -1,9 +1,12 @@
 import streamlit as st
 import os
 
-file = "D:/$FILES/SCHOOL_FILES/#Fourth_Year/First_Semester/CSIT342_Industry_Elective_3/MidtermProject/MidtermProjectIE3/main.py"
-thisfile = os.path.abspath(file)
-if ('/' in thisfile): os.chdir(os.path.dirname(thisfile))
+# Set the directory where your main.py file is located
+thisfile = os.path.abspath(__file__)
+base_dir = os.path.dirname(thisfile)
+
+# Adjust the path to your files relative to the base_dir
+file = os.path.join(base_dir, "MProject/views/mainpage.py")
 
 # -- PAGE SETUP --
 
