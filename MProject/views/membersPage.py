@@ -1,7 +1,7 @@
 import streamlit as st
 
 # Title of the page
-st.title("Members Page")
+st.title("Members")
 
 # List of member names and their corresponding image paths
 members = [
