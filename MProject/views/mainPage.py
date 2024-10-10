@@ -40,9 +40,7 @@ st.dataframe(df_sample)
 
 # Displaying summary statistics with explanation
 st.write("""
-### Summary Statistics
-
-The summary statistics provide a quick overview of the key attributes in the dataset. For each numeric column, you can see:
+Each box plot consists of five important parts that correspond to key statistical values, which match the 25th, 50th, and 75th percentiles, as seen in the data table. These values also match the results shown in Image 2.1, which displays the box plot, and Image 1.0, which shows the results from the snippet of code.
 
 - **Count**: Number of entries in the dataset.
 - **Mean**: The average value.

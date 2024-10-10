@@ -44,13 +44,19 @@ members_1_page= st.Page(
     icon=":material/group:",
 )
 
+test_page= st.Page(
+    page="MProject/views/dataPage2.py",
+    title="Histogram by Group",
+    icon=":material/bar_chart:",
+)
+
 
 # NAVIGATION SETUP
 
 pg = st.navigation(
     {
         "Home": [home_1_page, home_2_page],
-        "Data Visualization": [data_dashboard_1_page, data_dashboard_2_page],
+        "Data Visualization": [data_dashboard_1_page, data_dashboard_2_page,test_page],
         "BaoBao": [members_1_page],
     }    
 )
