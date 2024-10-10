@@ -74,6 +74,34 @@ else:
                         st.plotly_chart(fig, use_container_width=True)
 
         # Call the plotting functions
-        plot_individual_histograms(df_cleaned, valid_columns)  # Plot individual histograms for each column in two columns
-        plot_heatmap(df_cleaned, valid_columns)                # Plot heatmap
-        plot_interactive_box_plots(df_cleaned, valid_columns)  # Plot box plots
+        plot_histograms(df_cleaned, valid_columns)
+        st.write("In this visualization, one commonality across all categories is the presence of a bimodal to multimodal distribution of values, except for the 'Teamwork' category. In the 'Teamwork' category, the lowest value occurs most frequently, indicating a right-skewed distribution. The visualization also reveals that, in all categories, the highest frequency of data points is concentrated near the minimum value. Overall, the charts suggest that students are experiencing limited collaboration, with lower scores being the most prevalent.")
+        plot_heatmap(df_cleaned, valid_columns)
+        st.write("In this correlation matrix, we can see that all categories have a strong correlations to each other. Final exam has a correlation of 1 with the Scores and the midterm having 0.99 with the Scores. The rest of the categories range correlation values of 0.83 to 0.92 which means that a student having high value in this category will like have a high value in the other category. Example will be that the correlation between Hours and Scores is 0.98, it means that a student that spends more time studying will likely to earn higher scores.")
+        plot_interactive_box_plots(df_cleaned, valid_columns)
+        st.write("""
+        Each box plot consists of five important parts that correspond to key statistical values, which match the 25th, 50th, and 75th percentiles, as seen in the data table. These values also match the results shown in Image 2.1, which displays the box plot, and Image 1.0, which shows the results from the snippet of code.
+
+        - **Count**: Number of entries in the dataset.
+        - **Mean**: The average value.
+        - **Standard deviation (std)**: The spread or variability of the data.
+        - **Minimum (min)**: The smallest value in the dataset.
+        - **25th, 50th, 75th percentiles**: These represent the data distribution, giving an idea of where most values lie.
+        - **Maximum (max)**: The largest value in the dataset.
+
+        Below is the summary of these statistics for the student performance dataset:
+        """)
+        
+        st.write("""
+        ### Summary Statistics
+
+        The summary statistics provide a quick overview of the key attributes in the dataset. For each numeric column, you can see:
+
+        1. Whiskers:
+        - The lower whisker represents the minimum value of the dataset, matching the minimum value in the table and Image 2.1.
+        - The upper whisker represents the maximum value of the dataset, aligning with the maximum value in the table and as seen in Image 2.1.
+
+        2. Boxes:
+        - The lower box reflects the first quartile (Q1), representing the 25th percentile of the data. This matches the Q1 value in the table and the code output in Image 1.0.
+        - The upper box reflects the third quartile (Q3), representing the 75th percentile, which also matches the values in the table and Image 2.1.
+        """)
