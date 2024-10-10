@@ -16,6 +16,13 @@ home_1_page= st.Page(
     default=True,
 )
 
+home_2_page= st.Page(
+    
+    page="MProject/views/conclusionPage.py",
+    title="Conclusion",
+    icon=":material/home:",
+)
+
 data_dashboard_1_page= st.Page(
     
     page="MProject/views/dataPage.py",
@@ -42,7 +49,7 @@ members_1_page= st.Page(
 
 pg = st.navigation(
     {
-        "Home": [home_1_page],
+        "Home": [home_1_page, home_2_page],
         "Data Visualization": [data_dashboard_1_page, data_dashboard_2_page],
         "BaoBao": [members_1_page],
     }    
