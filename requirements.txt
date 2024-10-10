@@ -1,4 +1,6 @@
 streamlit
 pandas
-Requests
+requests
 plotly
+seaborn
+scipy
