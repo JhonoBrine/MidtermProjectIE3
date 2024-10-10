@@ -7,9 +7,9 @@ st.title("Members")
 members = [
     {"name": "Jhon Lorenz Pabroa", "image": "assets/pabs.jpg"},
     {"name": "Rey Dante Garcia", "image": "assets/rey.jpg"},
-    {"name": "Gil Joshua Yabao", "image": "assets/hehe.png"},
+    {"name": "Gil Joshua Yabao", "image": "assets/joshua.jpg"},
     {"name": "Trisha Mae Rivera", "image": "assets/trisha.jpg"},
-    {"name": "Mark Edwin Huyo-a", "image": "assets/luci.png"},
+    {"name": "Mark Edwin Huyo-a", "image": "assets/mark.jpg"},
 ]
 
 # Create a 3-column layout
