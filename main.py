@@ -1,16 +1,14 @@
 import streamlit as st
 import os
 
-# Set the directory where your main.py file is located
 thisfile = os.path.abspath(__file__)
 base_dir = os.path.dirname(thisfile)
 
-# Adjust the path to your files relative to the base_dir
 file = os.path.join(base_dir, "MProject/views/mainpage.py")
 
 # -- PAGE SETUP --
 
-profile_1_page= st.Page(
+home_1_page= st.Page(
     
     page="MProject/views/mainPage.py",
     title="Introduction",
@@ -18,21 +16,21 @@ profile_1_page= st.Page(
     default=True,
 )
 
-profile_2_page= st.Page(
+data_dashboard_1_page= st.Page(
     
     page="MProject/views/dataPage.py",
     title="Student Performance Dashboard",
     icon=":material/analytics:",
 )
 
-profile_3_page= st.Page(
+data_dashboard_2_page= st.Page(
     
     page="MProject/views/rawDataPage.py",
     title="Insert Raw Data",
     icon=":material/note_add:",
 )
 
-profile_4_page= st.Page(
+members_1_page= st.Page(
     
     page="MProject/views/membersPage.py",
     title="Members",
@@ -44,9 +42,9 @@ profile_4_page= st.Page(
 
 pg = st.navigation(
     {
-        "Home": [profile_1_page],
-        "Data Visualization": [profile_2_page, profile_3_page],
-        "BaoBao": [profile_4_page],
+        "Home": [home_1_page],
+        "Data Visualization": [data_dashboard_1_page, data_dashboard_2_page],
+        "BaoBao": [members_1_page],
     }    
 )
 
