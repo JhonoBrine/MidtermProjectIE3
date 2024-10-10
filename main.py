@@ -56,7 +56,7 @@ test_page= st.Page(
 pg = st.navigation(
     {
         "Home": [home_1_page, home_2_page],
-        "Data Visualization": [data_dashboard_1_page, data_dashboard_2_page,test_page],
+        "Data Visualization": [data_dashboard_1_page, test_page, data_dashboard_2_page],
         "BaoBao": [members_1_page],
     }    
 )

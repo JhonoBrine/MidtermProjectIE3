@@ -74,7 +74,7 @@ else:
                         st.plotly_chart(fig, use_container_width=True)
 
         # Call the plotting functions
-        plot_histograms(df_cleaned, valid_columns)
+        plot_individual_histograms(df_cleaned, valid_columns)
         st.write("In this visualization, one commonality across all categories is the presence of a bimodal to multimodal distribution of values, except for the 'Teamwork' category. In the 'Teamwork' category, the lowest value occurs most frequently, indicating a right-skewed distribution. The visualization also reveals that, in all categories, the highest frequency of data points is concentrated near the minimum value. Overall, the charts suggest that students are experiencing limited collaboration, with lower scores being the most prevalent.")
         plot_heatmap(df_cleaned, valid_columns)
         st.write("In this correlation matrix, we can see that all categories have a strong correlations to each other. Final exam has a correlation of 1 with the Scores and the midterm having 0.99 with the Scores. The rest of the categories range correlation values of 0.83 to 0.92 which means that a student having high value in this category will like have a high value in the other category. Example will be that the correlation between Hours and Scores is 0.98, it means that a student that spends more time studying will likely to earn higher scores.")
