@@ -9,11 +9,10 @@ import plotly.figure_factory as ff
 st.title('BaoBao - Midterm Presentation')
 st.subheader("Exploring Factors Influencing Student Performance")
 
-# Concise Introduction
 st.markdown("""
 ### Introduction
 
-This project explores a dataset from **Kaggle** that focuses on student performance. Kaggle is a platform known for providing datasets and hosting data science competitions. The dataset includes:
+This project explores the **[Student Grades](https://www.kaggle.com/datasets/samira1992/student-grades-intermediate-dataset)** dataset, from Kaggle, which focuses on student performance. Kaggle is a platform known for providing datasets and hosting data science competitions. The dataset includes:
 
 - Hours of study
 - Practice hours
