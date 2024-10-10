@@ -1,6 +1,5 @@
 import streamlit as st
 import pandas as pd
-import plotly.figure_factory as ff
 import plotly.express as px
 
 st.title('Student Performance Dashboard')
@@ -37,13 +36,19 @@ else:
     if not valid_columns:
         st.warning("Please select columns with sufficient data to visualize.")
     else:
-        # --- Function for Plotting Histograms ---
-        def plot_histograms(data, columns):
-            hist_data = [data[col].values for col in columns]
-            group_labels = columns  # Labels for each histogram
-            fig = ff.create_distplot(hist_data, group_labels, bin_size=[0.5] * len(columns))
-            fig.update_layout(title="Histogram")
-            st.plotly_chart(fig, use_container_width=True)
+        # Define a list of colors to use for the histograms
+        colors = px.colors.qualitative.Plotly  # Get a predefined color set from Plotly
+        
+        # --- Function for Plotting Individual Histograms in Two Columns ---
+        def plot_individual_histograms(data, columns):
+            cols = st.columns(2)  # Create two columns for side-by-side display
+            for i, col in enumerate(columns):
+                color = colors[i % len(colors)]  # Cycle through the colors
+                with cols[i % 2]:  # Alternate between the two columns
+                    fig = px.histogram(data, x=col, nbins=10, title=f"Histogram of {col}", 
+                                       marginal="rug", histnorm='density', color_discrete_sequence=[color])
+                    fig.update_layout(bargap=0.2, showlegend=False)
+                    st.plotly_chart(fig, use_container_width=True)
 
         # --- Function for Plotting Heatmap ---
         def plot_heatmap(data, columns):
@@ -69,6 +74,6 @@ else:
                         st.plotly_chart(fig, use_container_width=True)
 
         # Call the plotting functions
-        plot_histograms(df_cleaned, valid_columns)  # Plot histograms
-        plot_heatmap(df_cleaned, valid_columns)     # Plot heatmap
+        plot_individual_histograms(df_cleaned, valid_columns)  # Plot individual histograms for each column in two columns
+        plot_heatmap(df_cleaned, valid_columns)                # Plot heatmap
         plot_interactive_box_plots(df_cleaned, valid_columns)  # Plot box plots
