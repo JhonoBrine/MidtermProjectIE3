@@ -12,13 +12,13 @@ members = [
 
 leader = next(member for member in members if member["role"] == "Leader")
 
-st.markdown("<h2 style=' color: #0073e6;'>Team Leader</h2>", unsafe_allow_html=True)
+st.markdown("<h2 style=' color: white;'>Team Leader</h2>", unsafe_allow_html=True)
 leader_col = st.container()
 with leader_col:
     st.image(leader["image"], width=200, caption=f"{leader['name']}")
 
 st.write("")
-st.markdown("<h2 style='color: #0073e6;'>Members</h2>", unsafe_allow_html=True)
+st.markdown("<h2 style='color: white;'>Members</h2>", unsafe_allow_html=True)
 columns = st.columns(2)
 
 for i, member in enumerate(members):
