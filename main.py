@@ -57,6 +57,7 @@ pg = st.navigation(
 )
 
 # SHARED ON ALL PAGES
+st.logo("assets/BAOBAO.png")
 st.sidebar.text("For CSIT342 - Industry Elective 3")
 
 
