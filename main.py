@@ -8,46 +8,40 @@ file = os.path.join(base_dir, "MProject/views/mainpage.py")
 
 # -- PAGE SETUP --
 
-home_1_page= st.Page(
-    
+home_page = st.Page(
     page="MProject/views/mainPage.py",
     title="Introduction",
     icon=":material/home:",
     default=True,
 )
 
-home_2_page= st.Page(
-    
-    page="MProject/views/conclusionPage.py",
-    title="Conclusion",
-    icon=":material/home:",
-)
-
-data_dashboard_1_page= st.Page(
-    
+data_dashboard_1_page = st.Page(
     page="MProject/views/dataPage.py",
     title="Student Performance Dashboard",
     icon=":material/analytics:",
 )
 
-data_dashboard_2_page= st.Page(
-    
+data_dashboard_2_page = st.Page(
     page="MProject/views/rawDataPage.py",
     title="Insert Raw Data",
     icon=":material/note_add:",
 )
 
-members_1_page= st.Page(
-    
+members_1_page = st.Page(
     page="MProject/views/membersPage.py",
     title="Members",
     icon=":material/group:",
 )
 
-test_page= st.Page(
+test_page = st.Page(
     page="MProject/views/dataPage2.py",
     title="Histogram by Group",
     icon=":material/bar_chart:",
+)
+conclusion = st.Page(
+    page="MProject/views/conclusionPage.py",
+    title="General Insights and Key Takeaways",
+    icon=":material/lightbulb:",
 )
 
 
@@ -55,10 +49,11 @@ test_page= st.Page(
 
 pg = st.navigation(
     {
-        "Home": [home_1_page, home_2_page],
+        "Home": [home_page],
         "Data Visualization": [data_dashboard_1_page, test_page, data_dashboard_2_page],
+        "Conclusion": [conclusion],
         "BaoBao": [members_1_page],
-    }    
+    }
 )
 
 # SHARED ON ALL PAGES
