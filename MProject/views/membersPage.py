@@ -1,22 +1,27 @@
 import streamlit as st
 
-# Title of the page
-st.title("Members")
+st.title("BaoBao")
 
-# List of member names and their corresponding image paths
 members = [
-    {"name": "Jhon Lorenz Pabroa", "image": "assets/pabs.jpg"},
-    {"name": "Rey Dante Garcia", "image": "assets/rey.jpg"},
-    {"name": "Gil Joshua Yabao", "image": "assets/joshua.jpg"},
-    {"name": "Trisha Mae Rivera", "image": "assets/trisha.jpg"},
-    {"name": "Mark Edwin Huyo-a", "image": "assets/mark.jpg"},
+    {"name": "Gil Joshua Yabao", "image": "assets/joshua.jpg", "role": "Leader"},
+    {"name": "Jhon Lorenz Pabroa", "image": "assets/pabs.jpg", "role": "Member"},
+    {"name": "Rey Dante Garcia", "image": "assets/rey.jpg", "role": "Member"},
+    {"name": "Trisha Mae Rivera", "image": "assets/trisha.jpg", "role": "Member"},
+    {"name": "Mark Edwin Huyo-a", "image": "assets/mark.jpg", "role": "Member"},
 ]
 
-# Create a 3-column layout
-columns = st.columns(3)
+leader = next(member for member in members if member["role"] == "Leader")
 
-# Loop through members and display images in columns
+st.markdown("<h2 style=' color: #0073e6;'>Team Leader</h2>", unsafe_allow_html=True)
+leader_col = st.container()
+with leader_col:
+    st.image(leader["image"], width=200, caption=f"{leader['name']}")
+
+st.write("")
+st.markdown("<h2 style='color: #0073e6;'>Members</h2>", unsafe_allow_html=True)
+columns = st.columns(2)
+
 for i, member in enumerate(members):
-    with columns[i % 3]:  # Cycle through columns
-        st.image(member["image"], width=200)
-        st.markdown(f"<h3 style='font-size: 20px; font-weight: bold;'>{member['name']}</h3>", unsafe_allow_html=True)
+    if member["role"] == "Member":
+        with columns[i % 2]:
+            st.image(member["image"], width=200, caption=f"{member['name']}")
