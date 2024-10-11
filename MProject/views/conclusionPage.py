@@ -16,7 +16,7 @@ st.write(
     - The average number of hours spent studying is approximately 5 hours. 
     - The range spans from as low as 1.1 hours to a maximum of 9.2 hours.The standard deviation of 2.52 indicates that students have varied study hours, with some dedicating more time than others.
 
-    ##### 2.Practice Sessions:
+    ##### 2. Practice Sessions:
 
     - On average, students engage in around 2.76 practice sessions with a minimum of 0.2 sessions and a maximum of 6.2
     - This Suggests some students are not engaging much in practice, while others are more consistent.
