@@ -23,7 +23,7 @@ st.write(
 
     ##### 3. Teamwork Participation:
 
-    - The teamwork involvement is relatively low on average at 1.81. There are students with no involvement(minimum of 0) while some of students have high teamwork engagement, reaching up to 6.'
+    - The teamwork involvement is relatively low on average at 1.81. There are students with no involvement(minimum of 0) while some of students have high teamwork engagement, reaching up to 6.
     - The data shows a significant spread, with a standard deviation of 1.7, indicating that not all students participate equally in teamwork.
 
     ##### 4. Midterm and Final Exam Scores:
