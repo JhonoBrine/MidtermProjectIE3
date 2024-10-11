@@ -46,6 +46,5 @@ st.write(
     - **Correlation Between Study Time and Scores**: Higher overall scores are likely associated with more hours spent studying, as students who dedicate more time to their studies tend to perform better in exams and overall.
     - **Low-Scoring Students**: A notable portion of students seems to struggle, as indicated by the minimum and 25th percentile values, which are quite far from the maximum, pointing towards potential gaps in understanding or engagement in the course.
 
-    This analysis could guide improvements in teaching methods, encouraging more collaborative learning through increased teamwork and offering additional support to lower-performing students.
     """
 )
