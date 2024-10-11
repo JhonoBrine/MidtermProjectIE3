@@ -6,7 +6,7 @@ import plotly.figure_factory as ff
 import plotly.express as px
 
 st.title('Histogram')
-st.write('A histogram comparison between data groubed by Grades')
+st.write('A histogram comparison between data grouped by Grades')
 
 # Load the dataset
 df = pd.read_csv("MProject/assets/csv/Student_Grades.csv")
