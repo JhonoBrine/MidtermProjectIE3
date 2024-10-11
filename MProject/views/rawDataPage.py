@@ -44,6 +44,7 @@ st.session_state.data = st.session_state.data.apply(pd.to_numeric, errors="coerc
 
 # --- Data Editing ---
 st.write("### Current Data:")
+
 # Allow users to edit the DataFrame directly
 edited_data = st.data_editor(st.session_state.data, height=300, key="data_editor")
 
